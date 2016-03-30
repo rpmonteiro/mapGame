@@ -20,4 +20,9 @@ function Map(latlng, zoom, options) {
     if (map.getZoom() < zoomOutMax) map.setZoom(zoomOutMax);
   });
 
+  var strictBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(85, -180),           // top left corner of map
+    new google.maps.LatLng(-85, 180)            // bottom right corner
+  );
+
 }
