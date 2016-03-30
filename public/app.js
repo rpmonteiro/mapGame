@@ -1,4 +1,5 @@
 function initialize() {
+  var googleMap;
   var styles = [{
     'stylers': [{
       'visibility': 'off'
@@ -39,7 +40,8 @@ function initialize() {
 
   var initialZoom = 3;
   var initialMapCoordinates = {lat: 38.470794, lng: 6.679688};
-  var map = new Map(initialMapCoordinates, initialZoom, mapOptions);
+  googleMap = new Map(initialMapCoordinates, initialZoom, mapOptions);
+  dragMap = googleMap;
   $(".button-collapse").sideNav({
     menuWidth: 500
   });
@@ -60,6 +62,8 @@ window.onload = initialize;
 // cardPanel.style.visibility = 'visible';
 // $('.button-collapse').sideNav('show');
 // Get userName
+
+
 var userName;
 var startGameUserName = document.getElementById('setPlayerName');
 var userNameButton = document.getElementById('popupButton');
@@ -76,6 +80,5 @@ startGameButton.addEventListener('click', function() {
   $('.button-collapse').sideNav('show');
   document.getElementById('cardPanel').removeAttribute("style");;
   console.log(cardPanel);
-  map.setOptions({draggable: true});
+  dragMap.setOptions({draggable: true});
 })
-
