@@ -40,6 +40,7 @@ function initialize() {
 
   var initialZoom = 3;
   var initialMapCoordinates = {lat: 38.470794, lng: 6.679688};
+
   googleMap = new Map(initialMapCoordinates, initialZoom, mapOptions);
   dragMap = googleMap;
   $(".button-collapse").sideNav({
@@ -50,19 +51,28 @@ function initialize() {
   $('.modal-trigger').leanModal();
 }
 
+  var map = new Map(initialMapCoordinates, initialZoom, mapOptions);
+
+  //get restcountries api data
+  if (!countries){
+    console.log("local countries not found");
+    var url = "http://restcountries.eu/rest/v1";
+    var request = new XMLHttpRequest;
+    request.open("GET", url);
+    request.send();
+    request.onload = function(){
+      if (request.status === 200){
+        console.log("api GET successful");
+        countries = JSON.parse(request.responseText);
+        localStorage.setItem("countries_data", JSON.stringify(countries));
+      };
+    };
+  };
+}
+
 window.onload = initialize;
 
-
-
-
-
-// GameStarts
-// map.setOptions({draggable: true});
-// var cardPanel = getElementById('card-panel');
-// cardPanel.style.visibility = 'visible';
-// $('.button-collapse').sideNav('show');
-// Get userName
-
+var game;
 
 var userName;
 var startGameUserName = document.getElementById('setPlayerName');

@@ -1,5 +1,7 @@
 function Map(latlng, zoom, options) {
-  var marker;
+  console.log("map initialized");
+
+  // var marker;
   var mapDiv = document.getElementById('map');
 
   this.googleMap = new google.maps.Map(mapDiv, {
@@ -22,37 +24,54 @@ function Map(latlng, zoom, options) {
     if (map.getZoom() < zoomOutMax) map.setZoom(zoomOutMax);
   });
 
-  google.maps.event.addListener(map, 'click', function(event) {
-    addMarker(event.latLng);
-  });
-
-  function addMarker(location) {
-    if (marker) {
-      marker.setPosition(location);
-    } else {
-      marker = new google.maps.Marker({
-        position: location,
-        map: map
-      });
-    }
+Map.prototype.addMarker = function(location) {
+  if (marker) {
+    marker.setPosition(location);
+    return marker.position;
+  } else {
+    marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+    return marker.position;
   }
-
-
-  // this.guessMarker = function() {
-  //   google.maps.event.addListener(map, 'click', function(event) {
-  //     console.log('I got clicked');
-  //     var coordinates = {
-  //       lat: event.latLng.lat(),
-  //       lng: event.latLng.lng()
-  //     }
-
-  //     this.marker = new google.maps.Marker({
-  //       position: coordinates,
-  //       map: this.map
-  //     })
-  //   }.bind(this))
-  // }
-
-  // map.setOptions({draggable: false});
-
 }
+setTimeout(function(){
+  game = startGameOnButtonClick();
+
+  google.maps.event.addListener(map, 'click', function(event) {
+    console.log("clicked");
+    game.checkDistance(Map.prototype.addMarker(event.latLng));
+  }.bind(this));
+}.bind(this), 2000);
+
+var countries = JSON.parse(localStorage.getItem("countries_data"));
+var map;
+var marker = false;
+
+function addTargetMarker(location) {
+    targetMarker = new google.maps.Marker({
+      position: location,
+      map: map,
+      visible: false
+    });
+  return targetMarker.position;  
+}
+
+var startGameOnButtonClick = function() {
+  var arrayCountryCapitals = [];
+  for (let i = 0; i < countries.length; i++){
+    arrayCountryCapitals.push({
+      country: countries[i].name,
+      capital: countries[i].capital
+    });  
+  }
+  randomIndexValue = Math.floor(Math.random() * (arrayCountryCapitals.length - 1))
+  randomCapital = arrayCountryCapitals[randomIndexValue].capital;
+  randomCountry = arrayCountryCapitals[randomIndexValue].country;
+  console.log(randomCapital);
+  console.log(randomCountry);
+  var game = new Game(arrayCountryCapitals[randomIndexValue].capital);
+  game.getTargetLatLng()
+  return game;
+};
