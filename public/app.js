@@ -93,8 +93,6 @@ function initialize() {
     cardPanel.removeAttribute("style");
     document.getElementById('gameText').innerText = "Find the capital of " + game.targetCountry + " - " + game.targetCity;
   })
-  console.log(map);
-  map.setOptions({draggable: true});
 }
 
 window.onload = initialize;
