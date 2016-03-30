@@ -4,9 +4,20 @@ function Map(latlng, zoom, options) {
   this.googleMap = new google.maps.Map(mapDiv, {
     center: latlng,
     zoom: zoom,
-    options: options
+    options: options,
+    mapTypeId: google.maps.MapTypeId.SATELLITE
   });
 
-  this.googleMap.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+  var map = this.googleMap;
+  var zoomOutMax = 2;
+  var zoomInMax = 6;
+
+  google.maps.event.addListener(map, 'zoom_changed', function () {
+    if (map.getZoom() > zoomInMax) map.setZoom(zoomInMax);
+  });
+
+  google.maps.event.addListener(map, 'zoom_changed', function () {
+    if (map.getZoom() < zoomOutMax) map.setZoom(zoomOutMax);
+  });
 
 }
