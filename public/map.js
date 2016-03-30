@@ -6,7 +6,7 @@ function Map(latlng, zoom, options) {
     center: latlng,
     zoom: zoom,
     options: options,
-    draggable:false,
+    draggable: false,
     mapTypeId: google.maps.MapTypeId.SATELLITE,
   });
 

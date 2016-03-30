@@ -5,7 +5,33 @@ body {
 }
 
 #map {
+  z-index: -1;
   position: absolute;
   height: 100%;
   width: 100%;
+}
+
+#slide-out {
+  position: absolute;
+}
+
+.button-collapse {
+  position: absolute;
+}
+
+.menu-icon {
+  font-size: 90px;
+  margin-left: 25px;
+  margin-top: 25px;
+  color: white;
+ }
+
+.select-dropdown li img {
+  object-fit: cover;
+  height: 100px;
+  width: 100px;
+}
+
+#modal1 {
+  z-index: 100;
 }
