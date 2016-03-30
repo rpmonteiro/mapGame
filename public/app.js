@@ -33,14 +33,13 @@ function initialize() {
   }];
 
   var mapOptions = {
-    disableDefaultUI: true,
+    disableDefaultUI: false,
     styles: styles
   };
 
   var initialZoom = 3;
   var initialMapCoordinates = {lat: 38.470794, lng: 6.679688};
   var map = new Map(initialMapCoordinates, initialZoom, mapOptions);
-
 }
 
 window.onload = initialize;
