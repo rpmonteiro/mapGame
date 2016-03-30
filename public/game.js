@@ -27,7 +27,6 @@ Game.prototype.checkDistance = function(clickedLatLng){
   var metresAway = google.maps.geometry.spherical.computeDistanceBetween(this.targetLatLng, clickedLatLng);
   console.log(metresAway/1000, "km from target");
   this.kmOffTarget = (metresAway / 1000)
-  return kmOffTarget;
 }
 
 // var game = new Game;
