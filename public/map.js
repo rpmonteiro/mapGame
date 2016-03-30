@@ -46,17 +46,8 @@ setTimeout(function(){
 }.bind(this), 2000);
 
 var countries = JSON.parse(localStorage.getItem("countries_data"));
-var map;
 var marker = false;
 
-function addTargetMarker(location) {
-    targetMarker = new google.maps.Marker({
-      position: location,
-      map: map,
-      visible: false
-    });
-  return targetMarker.position;  
-}
 
 var startGameOnButtonClick = function() {
   var arrayCountryCapitals = [];
@@ -75,3 +66,16 @@ var startGameOnButtonClick = function() {
   game.getTargetLatLng()
   return game;
 };
+
+}
+
+var map;
+
+function addTargetMarker (location) {
+    targetMarker = new google.maps.Marker({
+      position: location,
+      map: map,
+      visible: false
+    });
+  return targetMarker.position;  
+}

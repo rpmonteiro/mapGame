@@ -1,5 +1,5 @@
 function initialize() {
-  var googleMap;
+  var map;
   var styles = [{
     'stylers': [{
       'visibility': 'off'
@@ -41,18 +41,13 @@ function initialize() {
   var initialZoom = 3;
   var initialMapCoordinates = {lat: 38.470794, lng: 6.679688};
 
-  googleMap = new Map(initialMapCoordinates, initialZoom, mapOptions);
-  dragMap = googleMap;
   $(".button-collapse").sideNav({
     menuWidth: 500
   });
   $('select').material_select();
   $('#modal1').openModal();
   $('.modal-trigger').leanModal();
-}
-
   var map = new Map(initialMapCoordinates, initialZoom, mapOptions);
-
   //get restcountries api data
   if (!countries){
     console.log("local countries not found");
@@ -68,27 +63,35 @@ function initialize() {
       };
     };
   };
+
+  var startGameUserName = document.getElementById('setPlayerName');
+  var userNameButton = document.getElementById('popupButton');
+  var startGameButton = document.getElementById('startGameButton');
+
+  userNameButton.addEventListener('click', function(){
+    console.log('userNameButton got clicked');
+    userName = document.getElementById('userName').value
+    startGameUserName.innerHTML = "Let's do this, " + userName + "!";
+    $('.button-collapse').sideNav('show');
+  })
+
+  startGameButton.addEventListener('click', function() {
+    $('.button-collapse').sideNav('show');
+    document.getElementById('cardPanel').removeAttribute("style");;
+    console.log(cardPanel);
+    dragMap.setOptions({draggable: true});
+  })
+
+
+  
 }
+
+
+
 
 window.onload = initialize;
 
+var countries;
 var game;
 
 var userName;
-var startGameUserName = document.getElementById('setPlayerName');
-var userNameButton = document.getElementById('popupButton');
-var startGameButton = document.getElementById('startGameButton');
-
-userNameButton.addEventListener('click', function(){
-  console.log('userNameButton got clicked');
-  userName = document.getElementById('userName').value
-  startGameUserName.innerHTML = "Let's do this, " + userName + "!";
-  $('.button-collapse').sideNav('show');
-})
-
-startGameButton.addEventListener('click', function() {
-  $('.button-collapse').sideNav('show');
-  document.getElementById('cardPanel').removeAttribute("style");;
-  console.log(cardPanel);
-  dragMap.setOptions({draggable: true});
-})
