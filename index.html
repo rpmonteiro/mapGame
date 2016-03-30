@@ -38,12 +38,18 @@
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content center-align">
-      <h4>Hello!</h4>
-      <p>A bunch of text</p>
-      <button class="modal-action modal-close waves-effect waves-green btn-large light-green lighten-1 center-align">Let's Go!</button>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      <h4>Hello! What should we call you?</h4>
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s4 offset-s4">
+              <input placeholder="Bob" id="userName" type="text" class="validate">
+              <label for="first_name">Name</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <button id="popupButton" class="modal-action modal-close waves-effect waves-green btn-large light-green center-align">Let's Go!</button>
     </div>
   </div>
 
