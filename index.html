@@ -9,7 +9,7 @@
     <script src='app.js'></script>
 </head>
 <body>
-  <div class="card-panel black center-align" style="display: none;">
+  <div id ="cardPanel" class="card-panel black center-align" style="display: none;">
     <span class="white-text">Find the capital of</span>
       <a class="waves-effect waves-light btn green lighten-1 modal-trigger" href="#modal2" disabled>Submit Answer</a>
   </div>
@@ -24,9 +24,9 @@
       <div class="input-field col s12 m12 center-align">
         <select class="icons">
           <option value="" disabled selected>Pick One:</option>
-          <option value="easy" data-icon="images/dumb.jpeg" class="left circle">EASY - Is Portugal in Spain?</option>
-          <option value="normal" data-icon="images/normal.jpeg" class="left circle">NORMAL - Not too shabby...</option>
-          <option value="hard" data-icon="images/yoda.jpeg" class="left circle">HARD - VERY SMART I AM</option>
+          <option value="easy" data-icon="images/dumb.jpeg" class="left circle"><b>EASY</b> - Is Portugal in Spain?</option>
+          <option value="normal" data-icon="images/normal.jpeg" class="left circle"><b>NORMAL</b> - Not too shabby...</option>
+          <option value="hard" data-icon="images/yoda.jpeg" class="left circle"><b>HARD</b> - Very smart I am.</option>
         </select>
         <label>Difficulty Setting</label>
       </div>
@@ -35,7 +35,7 @@
       <h5 id="setPlayerName" class="center-align">Let's do this, </h5>
     </div>
     <div class="container center-align">
-      <button class="btn-large light-green lighten-1 waves-effect waves-light center-align">Start Game!</button>
+      <button id="startGameButton" class="btn-large light-green lighten-1 waves-effect waves-light center-align">Start Game!</button>
     </div>
   </ul>
   <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu menu-icon"></i></a>

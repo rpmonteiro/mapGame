@@ -43,10 +43,39 @@ function initialize() {
   $(".button-collapse").sideNav({
     menuWidth: 500
   });
+  $('select').material_select();
+  $('#modal1').openModal();
+  $('.modal-trigger').leanModal();
 }
 
 window.onload = initialize;
 
-$('select').material_select();
-$('#modal1').openModal();
-$('.modal-trigger').leanModal();
+
+
+
+
+// GameStarts
+// map.setOptions({draggable: true});
+// var cardPanel = getElementById('card-panel');
+// cardPanel.style.visibility = 'visible';
+// $('.button-collapse').sideNav('show');
+// Get userName
+var userName;
+var startGameUserName = document.getElementById('setPlayerName');
+var userNameButton = document.getElementById('popupButton');
+var startGameButton = document.getElementById('startGameButton');
+
+userNameButton.addEventListener('click', function(){
+  console.log('userNameButton got clicked');
+  userName = document.getElementById('userName').value
+  startGameUserName.innerHTML = "Let's do this, " + userName + "!";
+  $('.button-collapse').sideNav('show');
+})
+
+startGameButton.addEventListener('click', function() {
+  $('.button-collapse').sideNav('show');
+  document.getElementById('cardPanel').removeAttribute("style");;
+  console.log(cardPanel);
+  map.setOptions({draggable: true});
+})
+
