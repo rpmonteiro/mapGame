@@ -6,6 +6,7 @@ body {
 
 #map {
   z-index: -1;
+  margin: 0;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -34,4 +35,19 @@ body {
 
 #modal1 {
   z-index: 100;
+}
+
+.card-panel {
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  width: 300px;
+}
+
+.btn submit-answer {
+  margin-top: 0;
+  padding: 0;
 }

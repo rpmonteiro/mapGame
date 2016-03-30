@@ -47,7 +47,6 @@ function initialize() {
 
 window.onload = initialize;
 
-$(document).ready(function() {
-  $('select').material_select();
-  $('#modal1').openModal();
-})
+$('select').material_select();
+$('#modal1').openModal();
+$('.modal-trigger').leanModal();

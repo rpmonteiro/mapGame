@@ -9,6 +9,10 @@
     <script src='app.js'></script>
 </head>
 <body>
+  <div class="card-panel black center-align" style="display: none;">
+    <span class="white-text">Find the capital of</span>
+      <a class="waves-effect waves-light btn green lighten-1 modal-trigger" href="#modal2" disabled>Submit Answer</a>
+  </div>
   <ul id="slide-out" class="side-nav">
     <div class="row">
       <h2 class="center-align">Find the Capital!</h2>
@@ -27,8 +31,11 @@
         <label>Difficulty Setting</label>
       </div>
     </div>
+    <div class="row">
+      <h5 id="setPlayerName" class="center-align">Let's do this, </h5>
+    </div>
     <div class="container center-align">
-      <button class="btn-large light-green lighten-1 center-align">Start Game!</button>
+      <button class="btn-large light-green lighten-1 waves-effect waves-light center-align">Start Game!</button>
     </div>
   </ul>
   <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu menu-icon"></i></a>
@@ -50,6 +57,16 @@
         </form>
       </div>
       <button id="popupButton" class="modal-action modal-close waves-effect waves-green btn-large light-green center-align">Let's Go!</button>
+    </div>
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content center-align">
+      <h4>Congratulations!</h4>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close waves-effect waves-green btn-large red lighten-2 center-align">Close</button>
     </div>
   </div>
 
