@@ -1,11 +1,13 @@
 var Game = function(targetCity){
-  this.score = 0
-  this.target = targetCity || "Paris"
+  this.score = 0;
+  this.targetCity = targetCity || "Paris"
+  this.targetCountry;
   this.targetLatLng;
+  this.kmOffTarget;
 }
 
 Game.prototype.getTargetLatLng = function(){
-  var url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + this.target;
+  var url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + this.targetCity +;
   var request = new XMLHttpRequest;
   request.open("GET", url);
   request.send();
@@ -24,7 +26,8 @@ Game.prototype.checkDistance = function(clickedLatLng){
   console.log(clickedLatLng);
   var metresAway = google.maps.geometry.spherical.computeDistanceBetween(this.targetLatLng, clickedLatLng);
   console.log(metresAway/1000, "km from target");
-  return (metresAway / 1000);
+  this.kmOffTarget = (metresAway / 1000);
+  return this.kmOffTarget;
 }
 
 // var game = new Game;
