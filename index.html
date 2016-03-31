@@ -10,8 +10,8 @@
 </head>
 <body>
   <div id ="cardPanel" class="card-panel black center-align" style="display: none;">
-    <span class="white-text">Find the capital of</span>
-      <a class="waves-effect waves-light btn green lighten-1 modal-trigger" href="#modal2" disabled>Submit Answer</a>
+    <span id="gameText" class="white-text"></span>
+      <button id="submitAnswer" class="waves-effect waves-light btn green lighten-1 modal-trigger" href="#modal2" disabled>Submit Answer</button>
   </div>
   <ul id="slide-out" class="side-nav">
     <div class="row">
@@ -63,7 +63,8 @@
   <!-- Modal Structure -->
   <div id="modal2" class="modal">
     <div class="modal-content center-align">
-      <h4>Congratulations!</h4>
+      <h4 id="gameOverMessage">Congratulations!</h4>
+      <h5 id="finalResultMessage"></h5>
     </div>
     <div class="modal-footer">
       <button class="modal-action modal-close waves-effect waves-green btn-large red lighten-2 center-align">Close</button>

@@ -8,7 +8,7 @@ function Map(latlng, zoom, options) {
     center: latlng,
     zoom: zoom,
     options: options,
-    draggable: false,
+    draggable: true,
     mapTypeId: google.maps.MapTypeId.SATELLITE,
   });
 
@@ -41,7 +41,7 @@ setTimeout(function(){
 
   google.maps.event.addListener(map, 'click', function(event) {
     console.log("clicked");
-    kmOffTarget = game.checkDistance(Map.prototype.addMarker(event.latLng));
+    game.kmOffTarget = game.checkDistance(Map.prototype.addMarker(event.latLng));
   }.bind(this));
 }.bind(this), 2000);
 
@@ -55,7 +55,7 @@ var startGameOnButtonClick = function() {
     arrayCountryCapitals.push({
       country: countries[i].name,
       capital: countries[i].capital
-    });  
+    });
   }
   randomIndexValue = Math.floor(Math.random() * (arrayCountryCapitals.length - 1))
   randomCapital = arrayCountryCapitals[randomIndexValue].capital;
@@ -78,5 +78,5 @@ function addTargetMarker (location) {
       map: map,
       visible: false
     });
-  return targetMarker.position;  
+  return targetMarker.position;
 }

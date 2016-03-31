@@ -44,10 +44,13 @@ function initialize() {
   $(".button-collapse").sideNav({
     menuWidth: 500
   });
+
   $('select').material_select();
   $('#modal1').openModal();
   $('.modal-trigger').leanModal();
-  var map = new Map(initialMapCoordinates, initialZoom, mapOptions);
+
+  map = new Map(initialMapCoordinates, initialZoom, mapOptions);
+  console.log(map);
   //get restcountries api data
   if (!countries){
     console.log("local countries not found");
@@ -67,6 +70,10 @@ function initialize() {
   var startGameUserName = document.getElementById('setPlayerName');
   var userNameButton = document.getElementById('popupButton');
   var startGameButton = document.getElementById('startGameButton');
+  var submitAnswerButton = document.getElementById('submitAnswer');
+  var gameOverMessage = document.getElementById('gameOverMessage');
+  var finalResultMessage = document.getElementById('finalResultMessage');
+  var cardPanel = document.getElementById('cardPanel');
 
   userNameButton.addEventListener('click', function(){
     console.log('userNameButton got clicked');
@@ -75,23 +82,21 @@ function initialize() {
     $('.button-collapse').sideNav('show');
   })
 
-  startGameButton.addEventListener('click', function() {
-    $('.button-collapse').sideNav('show');
-    document.getElementById('cardPanel').removeAttribute("style");;
-    console.log(cardPanel);
-    dragMap.setOptions({draggable: true});
+  submitAnswerButton.addEventListener('click', function() {
+    console.log(userName);
+    gameOverMessage.innerText = "Congratulations, " + userName + "! You suck.";
+    finalResultMessage.innerText = "Your guess was so, so far away... exactly " + Math.floor(game.kmOffTarget) + " km. Buy yourself a little globe and study it.";
   })
 
-
-  
+  startGameButton.addEventListener('click', function() {
+    $('.button-collapse').sideNav('show');
+    cardPanel.removeAttribute("style");
+    document.getElementById('gameText').innerText = "Find the capital of " + game.targetCountry + " - " + game.targetCity;
+  })
 }
-
-
-
 
 window.onload = initialize;
 
 var countries;
 var game;
-
 var userName;
