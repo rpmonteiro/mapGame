@@ -1,9 +1,9 @@
 function Map(latlng, zoom, options) {
-  console.log("map initialized");
+  console.log("map object created");
 
-  // var marker;
   var mapDiv = document.getElementById('map');
 
+  this.marker = null;
   this.googleMap = new google.maps.Map(mapDiv, {
     center: latlng,
     zoom: zoom,
@@ -24,59 +24,28 @@ function Map(latlng, zoom, options) {
     if (map.getZoom() < zoomOutMax) map.setZoom(zoomOutMax);
   });
 
-Map.prototype.addMarker = function(location) {
-  if (marker) {
-    marker.setPosition(location);
-    return marker.position;
-  } else {
-    marker = new google.maps.Marker({
-      position: location,
-      map: map
-    });
-    return marker.position;
+}//Map constructor end
+
+Map.prototype = {
+  addMarker: function(location) {
+    if (this.marker) {
+      this.marker.setPosition(location);
+      return this.marker.position;
+    }
+    else {
+      this.marker = new google.maps.Marker({
+        position: location,
+        map: this.googleMap
+      });
+      return this.marker.position;
+    }
+  },
+  addTargetMarker: function(location){
+      targetMarker = new google.maps.Marker({
+        position: location,
+        map: this.googleMap,
+        visible: false
+      });
+    return targetMarker.position;
   }
-}
-setTimeout(function(){
-  game = startGameOnButtonClick();
-
-  google.maps.event.addListener(map, 'click', function(event) {
-    console.log("clicked");
-    game.kmOffTarget = game.checkDistance(Map.prototype.addMarker(event.latLng));
-  }.bind(this));
-}.bind(this), 2000);
-
-var countries = JSON.parse(localStorage.getItem("countries_data"));
-var marker = false;
-
-
-var startGameOnButtonClick = function() {
-  var arrayCountryCapitals = [];
-  for (var i = 0; i < countries.length; i++){
-    arrayCountryCapitals.push({
-      country: countries[i].name,
-      capital: countries[i].capital
-    });
-  }
-  randomIndexValue = Math.floor(Math.random() * (arrayCountryCapitals.length - 1))
-  randomCapital = arrayCountryCapitals[randomIndexValue].capital;
-  randomCountry = arrayCountryCapitals[randomIndexValue].country;
-  console.log(randomCapital);
-  console.log(randomCountry);
-  var game = new Game(arrayCountryCapitals[randomIndexValue].capital);
-  game.targetCountry = arrayCountryCapitals[randomIndexValue].country;
-  game.getTargetLatLng()
-  return game;
-};
-
-}
-
-var map;
-
-function addTargetMarker (location) {
-    targetMarker = new google.maps.Marker({
-      position: location,
-      map: map,
-      visible: false
-    });
-  return targetMarker.position;
-}
+};//prototype methods definition end
